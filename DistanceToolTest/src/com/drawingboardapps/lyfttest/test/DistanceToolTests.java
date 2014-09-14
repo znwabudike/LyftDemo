@@ -20,7 +20,6 @@ public class DistanceToolTests extends AndroidTestCase {
 	String[] paths_d1 = {"A>>C>>D>>B","A>>B>>C>>D","A>>C>>B>>D"};
 	String[] paths_d2 = {"C>>A>>B>>D","C>>D>>A>>B","C>>A>>D>>B"};
 	private ArrayList<Driver> drivers;
-	private ArrayList<Thread> threads;
 	private ArrayList<HashMap<String, String>> results;
 	/*
 	 * Set initialization variables here.
@@ -70,13 +69,11 @@ public class DistanceToolTests extends AndroidTestCase {
 	}
 
 	private void waitForThread(Thread thread) {
-		float timeElapsed = 0;
 		float thistime = System.currentTimeMillis();
 		while (thread != null && thread.isAlive()){
 			//hack haiku to keep the thread alive during JUnit Test
 			if (System.currentTimeMillis() < thistime + 1000){
 				thistime += 1000;
-				timeElapsed += 1000;
 				Log.d(TAG, "Why not write this here? " + thistime);
 				Log.d(TAG, "It might not get many views, " + thistime);
 				Log.d(TAG, "But you're reading it. " + thistime);
