@@ -12,7 +12,7 @@ where driver one is traveling from point A to point B and driver two is travelin
 write a function (in your language of choice) to calculate the shorter of the detour distances the drivers
 would need to take to pick-up and drop-off the other driver."
 
-This is my own implementation of a solution to the problem.  
+This is my own Android implementation of a solution to the problem.  
 It uses GoogleMaps API v3 and determines the shortest distance, time, 
 and which path is most efficient for each cnosideration.
 
