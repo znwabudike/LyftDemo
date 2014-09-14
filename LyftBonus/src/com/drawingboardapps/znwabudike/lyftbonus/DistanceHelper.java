@@ -6,21 +6,15 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
+
 import com.google.android.gms.maps.model.LatLng;
 
-import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
 
 /**
- * Calculate the detour distance between two different rides. 
- * Given four latitude / longitude pairs, 
- * where driver one is traveling from point A to point B 
- * and driver two is traveling from point C to point D,
- *  write a function (in Android) 
- *  to calculate the shorter of the detour distances the drivers would need 
- *  to take to pick-up and drop-off the other driver.
- * @author Zachary Nwabudike
+
+ * @author Zachary Nwabudike 9/13/2014
  *
  */
 
@@ -32,14 +26,7 @@ public class DistanceHelper {
 	private final String KEY_DESTINATION = "destination";
 	private final String KEY_WAYPOINT_1 = "wp1";
 	private final String KEY_WAYPOINT_2 = "wp2";
-	private Handler mHandler;
-	private ArrayList<Double> distances;
-	private ArrayList<Double> durations;
-	private ArrayList<String> durations_text;
-	private ArrayList<String> distances_text;
 	private HttpHelper mHttpHelper;
-
-	private ArrayList<Driver> drivers;
 
 	private ArrayList<HashMap<String, String>> results;
 
@@ -87,7 +74,6 @@ public class DistanceHelper {
 	}
 
 	public HashMap<String,String> getRoutes(Driver driver) {
-		int pos = 0;
 		HashMap<String,String> hm = new HashMap<String,String>();
 		getDetours(driver.getName(), 
 				driver.getStart(), 
@@ -124,26 +110,21 @@ public class DistanceHelper {
 
 	public class RouteOptimizer {
 		private static final String TAG = "RouteOptimizerTask";
-		private String id;
 		private LatLng location;
 		private LatLng destination;
 		private LatLng wp1;
 		private LatLng wp2;
-		private DistanceHelper mDistanceTool;
-
-
 		public RouteOptimizer(DistanceHelper mDistanceTool, HashMap<String,Object> hm){
 			this.location = (LatLng) hm.get(KEY_START);
 			this.destination = (LatLng) hm.get(KEY_DESTINATION);
 			this.wp1 = (LatLng) hm.get(KEY_WAYPOINT_1);
-			this.wp2 = (LatLng) hm.get(KEY_WAYPOINT_2);		
-			this.mDistanceTool = mDistanceTool;
+			this.wp2 = (LatLng) hm.get(KEY_WAYPOINT_2);
 		}
 
 		public void getDistances(){
 			int length = 3;
 			String[] URIs = new String[length];
-			ArrayList<Double> distances = new ArrayList<Double>();
+			new ArrayList<Double>();
 			try {
 				URIs[0] = buildURI(location, wp1, wp2, destination);//A>>C>>D>>B
 				URIs[1] = buildURI(location, destination, wp1, wp2);//A>>B>>C>>D
@@ -164,8 +145,6 @@ public class DistanceHelper {
 				}
 			}
 		}
-
-
 
 		private String buildURI(LatLng origin, LatLng waypoint_1, LatLng waypoint_2, LatLng destination) throws UnsupportedEncodingException{
 			String URI = "https://maps.googleapis.com/maps/api/directions/json?"

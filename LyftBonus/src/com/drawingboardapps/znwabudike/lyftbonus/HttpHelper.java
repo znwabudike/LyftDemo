@@ -69,8 +69,6 @@ public class HttpHelper {
 	
 	public void decodeResponseForDistances(String response) {
 		JSONObject responseJArry = null;
-		String duration_text = null;
-		double[] dist_dur = new double[3];
 		try {
 			responseJArry = new JSONObject(response);
 			JSONArray routes = (JSONArray) responseJArry.getJSONArray("routes");
