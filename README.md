@@ -28,6 +28,10 @@ Instructions:
 After importing this project and test case, set the variables in the init() method 
 located in /LyftDemo/DistanceToolTest/com.drawingboardapps.lyfttest/DistanceToolTest.java
 
+Add the LyftBonus project to the DistanceToolTest build path as a Library.
+
+Run the test case.
+
 Happy Coding!
 
 ++Zach Nwabudike
