@@ -14,7 +14,7 @@ would need to take to pick-up and drop-off the other driver."
 
 This is my own Android implementation of a solution to the problem.  
 It uses GoogleMaps API v3 and determines the shortest distance, time, 
-and which path is most efficient for each cnosideration.
+and which path is most efficient for each consideration.
 
 Contents:
 -----------------------------------------------
